@@ -104,6 +104,8 @@ System.out.println(map.containsValue("Java")); // 값 있는지 확인, return t
 mapTest.get(1) // 키의 값 확인
 
 map.getOrDefault("c","-999"); // 키가 없다면 default 값 적용
+
+map.replace(A, B) // A의 값을 B로 replace 함
 ```
 
 # for-loop
