@@ -1,19 +1,19 @@
 |               |                       |
 |:--------------|:----------------------|
 |  작성일          |  2023-04-09  |
-|    분류         |         [[운영체제]]              |
+|    분류         |         [운영체제](%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C.md)              |
 
 # Index
 ---
-- [[Process Control Block (PCB)]]
-- [[Context Switch]]
-- [[프로세스를  스케줄링하기 위한 큐]]
-- [[스케줄러]]
-- [[프로세스의 상태]]
-- [[프로세스 생성]]
-- [[프로세스 종료]]
-- [[프로세스와 관련된 System Call]]
-- [[프로세스 간 협력]]
+- [Process Control Block (PCB)](Process%20Control%20Block%20(PCB).md)
+- [Context Switch](Context%20Switch.md)
+- [프로세스를  스케줄링하기 위한 큐](%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EB%A5%BC%20%20%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81%ED%95%98%EA%B8%B0%20%EC%9C%84%ED%95%9C%20%ED%81%90.md)
+- [스케줄러](%EC%8A%A4%EC%BC%80%EC%A4%84%EB%9F%AC.md)
+- [프로세스의 상태](%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%9D%98%20%EC%83%81%ED%83%9C.md)
+- [프로세스 생성](%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EC%83%9D%EC%84%B1.md)
+- [프로세스 종료](%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EC%A2%85%EB%A3%8C.md)
+- [프로세스와 관련된 System Call](%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80%20%EA%B4%80%EB%A0%A8%EB%90%9C%20System%20Call.md)
+- [프로세스 간 협력](%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EA%B0%84%20%ED%98%91%EB%A0%A5.md)
 
 # 개념
 ---
@@ -51,9 +51,9 @@
 
 # 관련 링크
 ---
-[[CPU]]
-[[커널 주소 공간의 내용]]
-[[Thread]]
+[CPU](CPU.md)
+[커널 주소 공간의 내용](%EC%BB%A4%EB%84%90%20%EC%A3%BC%EC%86%8C%20%EA%B3%B5%EA%B0%84%EC%9D%98%20%EB%82%B4%EC%9A%A9.md)
+[Thread](Thread.md)
 
 
 # 출처

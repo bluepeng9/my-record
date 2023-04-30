@@ -1,7 +1,7 @@
 |               |                       |
 |:--------------|:----------------------|
 |  작성일          |  2023-04-12  |
-|    분류         |  [[스케줄러 종류]]                     |
+|    분류         |  [스케줄러 종류](%EC%8A%A4%EC%BC%80%EC%A4%84%EB%9F%AC%20%EC%A2%85%EB%A5%98.md)                     |
 
 Preemptive 스케줄러.
 
@@ -22,8 +22,8 @@ Preemptive 스케줄러.
 
 # 관련 링크
 ---
-[[First-Come First-Served]]
-[[스케줄링 성능 척도]]
+[First-Come First-Served](First-Come%20First-Served.md)
+[스케줄링 성능 척도](%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81%20%EC%84%B1%EB%8A%A5%20%EC%B2%99%EB%8F%84.md)
 
 # 출처
 ---

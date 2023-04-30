@@ -74,8 +74,8 @@ java.sql.Time 은 java.util.Date 를 상속하지만 java.util.Date에 있는 �
 의존 역전 원칙(DIP, Dependency Inversion Principle)은 자신보다 변하기 쉬운 것에 의존하던 것을 추상화된 인터페이스나 상위 클래스를 두어 변하기 쉬운 것의 변화에 영향받지 않게 하는 원칙을 말합니다. 예를 들어 타이어를 갈아끼울 수 있는 틀을 만들어 놓은 후 다양한 타이어를 교체할 수 있어야 합니다. 즉, 상위 계층은 하위 계층의 변화에 대한 구현으로부터 독립해야 합니다.
 
 ### 적절하게 사용할 수 있는 상황 (맞는 지 확인 X)
-![[Pasted image 20230408141951.png]]
-![[Pasted image 20230408142001.png]]
+![Pasted image 20230408141951](%EC%B2%A8%EB%B6%80%20%ED%8C%8C%EC%9D%BC/Pasted%20image%2020230408141951.png)
+![Pasted image 20230408142001](%EC%B2%A8%EB%B6%80%20%ED%8C%8C%EC%9D%BC/Pasted%20image%2020230408142001.png)
 순환 의존성이 생겼을 때.
 usecase 의 input 을 받을 때?
 

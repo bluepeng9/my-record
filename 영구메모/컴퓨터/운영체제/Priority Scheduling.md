@@ -1,7 +1,7 @@
 |               |                       |
 |:--------------|:----------------------|
 |  작성일          |  2023-04-12  |
-|    분류         |   [[스케줄러 종류]]                    |
+|    분류         |   [스케줄러 종류](%EC%8A%A4%EC%BC%80%EC%A4%84%EB%9F%AC%20%EC%A2%85%EB%A5%98.md)                    |
 
 우선순위가 가장 높은 프로세스에게 CPU 를 줌
 
@@ -28,7 +28,7 @@ priority = predicted next CPU burst time
 
 # 관련 링크
 ---
-[[Shortest-Time-First]]
+[Shortest-Time-First](Shortest-Time-First.md)
 
 
 # 출처

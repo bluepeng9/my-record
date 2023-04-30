@@ -1,12 +1,12 @@
 |             |                     |
 |:------------|:--------------------|
 | 작성일         | 2023-04-08 |
-|   분류        |       [[컴퓨터 시스템 구조 및 프로그램 실행]]              |
+|   분류        |       [컴퓨터 시스템 구조 및 프로그램 실행](%EC%BB%B4%ED%93%A8%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EA%B5%AC%EC%A1%B0%20%EB%B0%8F%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%8B%A4%ED%96%89.md)              |
 
 # Index
 ---
-[[CPU-burst time 의 분포]]
-[[CPU Scheduler & dispatcher]]
+[CPU-burst time 의 분포](CPU-burst%20time%20%EC%9D%98%20%EB%B6%84%ED%8F%AC.md)
+[CPU Scheduler & dispatcher](CPU%20Scheduler%20&%20dispatcher.md)
 
 # 개념
 ---
@@ -33,7 +33,7 @@ CPU 는 Memory 에 있는 Instruction 을 실행하고 다음 번에 실행할 �
 
 # 관련 링크
 ---
-[[Direct Memory Access]]
+[Direct Memory Access](Direct%20Memory%20Access.md)
 
 # 출처
 ---
