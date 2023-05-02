@@ -1,0 +1,191 @@
+- 작성일: 2023-05-02
+- 태그: 
+- 분류
+	- [HTTP](HTTP.md)
+- 관련 노트
+---
+# 클라이언트 서버 구조
+
+```
+Client                           Server
+  |                                |
+  | 1. Request                     |
+  |---------------------------->   |
+  |                                | 
+  |                    2. Response |
+  |   <----------------------------|
+  |                                | 
+```
+
+---
+# 무상태 프로토콜
+
+
+```
++-------------+         +-------------+
+|  Client A   |         |    Server   |
++-------------+         +-------------+
+|             |         |             |
+| Request 1   |-------> |             |
+|             |         | Process 1   |
+|             |         |             |
+|             | <-------| Response 1  |
+|             |         |             |
++-------------+         +-------------+
+
++-------------+         +-------------+
+|  Client B   |         |    Server   |
++-------------+         +-------------+
+|             |         |             |
+| Request 2   |-------> |             |
+|             |         | Process 2   |
+|             |         |             |
+|             | <-------| Response 2  |
+|             |         |             |
++-------------+         +-------------+
+
++-------------+         +-------------+
+|  Client A   |         |    Server   |
++-------------+         +-------------+
+|             |         |             |
+| Request 3   |-------> |             |
+|             |         | Process 3   |
+|             |         |             |
+|             | <-------| Response 3  |
+|             |         |             |
++-------------+         +-------------+
+```
+
+서버는 클라이언트에게 받은 Request 또는 Response를 기억하지 않습니다. 각각을 새로운 것으로 취급하고 어떠한 상태도 저장하지 않습니다.
+
+e.g
+- 고객: 이 노트북 얼마인가요?
+- 점원 A: 100만원 입니다.
+- 고객: 노트북 2개 구매하겠습니다.
+- 점원 B: 노트북 2개는 200만원 입니다. 신용카드, 현금 중 어떤 걸로 구매 하시겠어요?
+- 고객: 노트북 2개를 신용카드로 구매하겠습니다.
+- 점원 C: 200만원 결제 완료 되었습니다.
+
+## 유의해야할 점
+
+> HTTP is stateless, but not sessionless
+> 
+> [An overview of HTTP - HTTP | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#http_is_stateless_but_not_sessionless)
+
+- 모든 것을 무상태로 설계 할 수 있는 경우도 있고 없는 경우도 있다.
+	- 무상태
+		- e.g. 로그인이 필요 없는 단순한 서비스 소개 화면
+	- 상태 유지
+		- e.g. 로그인
+- 로그인한 사용자의 경우 로그인 했다는 상태를 서버에 유지
+- 일반적으로 브라우저 쿠키와 서버 세션등을 사용해서 상태 유지
+- 상태유지는 최소한만 사용
+
+## 결론
+
+- 점원이 바뀌어도 문제없이 결제 가능
+- 클라이언트 요청이 증가해도 서버 대거 투입 가능
+- 응답 서버를 쉽게 바꿀 수 있음 -> 무한한 서버 증설 가능
+
+## Stateful
+
+```
++-------------+         +-------------+
+|  Client A   |         |    Server   |
++-------------+         +-------------+
+|             |         |             |
+| Request 1   |-------> |             |
+|             |         | Process 1   |
+|             |         | Save state 1|
+|             | <-------| Response 1  |
+|             |         |             |
++-------------+         +-------------+
+
++-------------+         +-------------+
+|  Client B   |         |    Server   |
++-------------+         +-------------+
+|             |         |             |
+| Request 2   |-------> |             |
+|             |         | Process 2   |
+|             |         | Save state 2|
+|             | <-------| Response 2  |
+|             |         |             |
++-------------+         +-------------+
+
++-------------+         +-------------+
+|  Client A   |         |    Server   |
++-------------+         +-------------+
+|             |         |             |
+| Request 3   |-------> |             |
+|             |         | Load state 1|
+|             |         | Process 3   |
+|             | <-------| Response 3  |
+|             |         |             |
++-------------+         +-------------+
+```
+
+Stateful 서버는 각 Client의 상태를 기억합니다. 따라서 장애 발생 시 처리가 어렵습니다.
+
+---
+# 비 연결성 (Connectionless)
+
+Connectionless는 HTTP 요청을 주고 받고 연결을 끊습니다.
+
+```
+Client                Server
+  |                     |
+  |---HTTP Request----->|  (TCP connection established)
+  |<--HTTP Response-----|  (TCP connection closed)
+  |                     |
+```
+
+반면  Connection-Oriented는 서버가 response를 보낸 후에도 Client와 연결을 유지합니다.
+
+```
+Client                Server
+  |                     |
+  |---TCP Connect------>|  (TCP connection established)
+  |---HTTP Request----->|  
+  |<--HTTP Response-----|  
+  |---HTTP Request----->|  
+  |<--HTTP Response-----|  
+  |---TCP Disconnect--->|  (TCP connection closed)
+  |                     |
+```
+
+하지만 다음과 같은 한계가 있습니다.
+
+- TCP/IP 연결을 새로 맺어야 함
+	- 3 way handshake 시간 추가
+
+이와 같은 한계를 극복하기 위해 Persistent Connection이라는 기술이 있습니다.
+
+```
+Client                Server
+  |                     |
+  |---HTTP Request----->|  (TCP connection established)
+  |<--HTTP Response-----|  
+  |---HTTP Request----->|  
+  |<--HTTP Response-----|  
+  |                     |  (TCP connection kept open for a while)
+  |---HTTP Request----->|  
+  |<--HTTP Response-----|  
+  |                     |  (TCP connection closed after timeout)
+```
+
+Connection을 바로 닫지 않고 열어 두어 성능을 개선할 수 있습니다.
+
+## 결론
+
+Connectionless는 다음과 같은 장점이 있습니다.
+
+- Connection을 유지하지 않기 때문에, 서버의 자원을 절약 가능
+	- e.g. 웹 브라우저에서 수 천명의 사용자들이 계속해서 검색버튼을 누르지는 않기 때문에 필요할 때만 응답
+
+
+---
+# Reference
+
+- [An overview of HTTP - HTTP | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+- [Connection management in HTTP/1.x - HTTP | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Connection_management_in_HTTP_1.x)
+- [모든 개발자를 위한 HTTP 웹 기본 지식 - 인프런 | 강의 (inflearn.com)](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC)
