@@ -35,8 +35,6 @@ URI: Uniform Resource Identifier
 
 ```
 
----
-# URI란
 
 간단히 말해 리소스를 식별하는 문자열로, URL과 URN으로 분류할 수 있습니다.
 

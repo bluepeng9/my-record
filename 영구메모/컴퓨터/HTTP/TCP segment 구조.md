@@ -47,7 +47,7 @@
 >Seq # of next byte expected from other side
 
 - 상대방으로부터 받기를 기대하는 순서 number
-	- ex) 만약 값이 1000 이라면, 나 999까지 받았으니 1000 받기를 희망해 라는 뜻
+	- ex) 만약 값이 1000 이라면, 나 999까지 받았으니 1000 받기를 희망해 라는 뜻
 - cumulative ACK
 
 

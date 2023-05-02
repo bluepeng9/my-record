@@ -34,7 +34,7 @@
 4. Terminate
 
 1, 4에서의 스케줄링은 nonpreemptive (= 강제로 빼앗지 않고 자진 반납)
-다른 스케줄링은 모두 preemptive (= 강제로 빼앗음)
+다른 스케줄링은 모두 preemptive (= 강제로 빼앗음)
 
 # 관련 링크
 ---
