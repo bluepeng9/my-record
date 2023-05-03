@@ -8,6 +8,8 @@
 # Index
 
 - [HTTP 메서드](HTTP%20메서드.md)
+- [HTTP 헤더](HTTP%20헤더.md)
+- [HTTP Representation](HTTP%20Representation.md)
 
 ---
 

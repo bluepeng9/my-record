@@ -1,0 +1,53 @@
+- 작성일: 2023-05-03
+- 태그: 
+- 분류
+    - [HTTP 메시지](HTTP%20메시지.md)
+- 관련 노트
+---
+
+# Index
+
+- [Representation metadata](Representation%20metadata.md)
+
+---
+
+# HTTP Representation 이란
+
+다음과 같은 값을 가진 한 사용자가 있다고 가정해봅시다.
+
+-   ID: 1
+-   First name: John
+-   Last name: Doe
+-   e-mail: john.doe@example.com
+
+리소스는 다양한 방법으로 표현(Representation)될 수 있습니다. (JSON, XML, YAML ...)
+
+JSON으로 이 사용자를 표현하면 다음과 같습니다.
+
+```javascript
+{
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com"
+}
+```
+
+XML에서는 다음과 같이 표현할 수 있습니다.
+
+```xml
+<user>
+    <id>1</id>
+    <firstName>John</firstName>
+    <lastName>Doe</lastName>
+    <email>john.doe@example.com</email>
+</user>
+```
+
+---
+
+# Reference
+
+- [RFC 7231 - Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content (ietf.org)](https://datatracker.ietf.org/doc/html/rfc7231#section-3.1)
+- [REST의 representation이란 무엇인가 – eungjun (npcode.com)](https://blog.npcode.com/2017/04/03/rest%EC%9D%98-representation%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/)
+- [json - What is the difference between resource and resource representation in REST? - Stack Overflow](https://stackoverflow.com/questions/33706191/what-is-the-difference-between-resource-and-resource-representation-in-rest)
