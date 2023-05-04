@@ -15,7 +15,7 @@ fork 시 자식 프로세스 pid == 0, 부모 pid > 0
 ---
 프로세스 A 가 wait() System call 을 호출 하면
 - 커널은 child가 종료될 때 까지 프로세스 A를 Sleep 시킨다 (block 상태)
-- Child process 가 종료되면 커널은 프로세스 A를 깨운다 (ready 상태)
+- Child process 가 종료되면 커널은 프로세스 A를 깨운다 (ready 상태)
 
 # exit()
 ---
