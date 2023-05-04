@@ -14,7 +14,7 @@ Representation Metatdata
 |
 +-- Content-Language
 |
-+-- Content-Location
++-- Content-Length
 ```
 
 ```HTTP
