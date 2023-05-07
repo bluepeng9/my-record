@@ -7,6 +7,8 @@
 # Index
 
 - [Servlet (서블릿)](Servlet%20(서블릿).md)
+- [WEB-INF](WEB-INF.md)
+- [JAVA 코테 벼락치기](JAVA%20코테%20벼락치기.md)
 
 ---
 

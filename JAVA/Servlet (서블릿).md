@@ -4,6 +4,7 @@
     - [JAVA](JAVA.md)
 - 관련 노트
     - [Web Server와 Web Application Server](../Spring/Web%20Server와%20Web%20Application%20Server.md)
+    - [HTTP 메서드 종류](../HTTP/HTTP%20메서드%20종류.md)
 ---
 
 # 정의
@@ -70,6 +71,124 @@ class HelloServlet extends HttpServlet {
 
 ---
 
+# 사용 예
+
+## request.getParameter
+
+```java
+//http://localhost:8080/servlet/members/save?username=kim&age=20
+@WebServlet(
+    name = "memberSaveServlet",
+    urlPatterns = "/servlet/members/save"
+)  
+public class MemberSaveServlet extends HttpServlet {
+    @Override  
+    protected void service(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws ServletException, IOException {  
+        String username = request.getParameter("username");  
+        int age = Integer.parseInt(request.getParameter("age"));
+    
+        response.setContentType("text/html");  
+        response.setCharacterEncoding("utf-8");
+        
+        PrintWriter w = response.getWriter();  
+        w.write("<html>\n");
+        ...
+}
+```
+
+`request.getParameter`를 통해 `/servlet/members/save` 주소로 온 `request`의 `parameter`를 얻을 수 있습니다.
+
+`POST` 요청 역시 `getParameter`를 이용해 받을 수 있습니다. 
+```java
+w.write("<!DOCTYPE html>\n" +  
+        "<html>\n" +  
+        "<head>\n" +  
+            " <meta charset=\"UTF-8\">\n" +  
+            " <title>Title</title>\n" +  
+        "</head>\n" +  
+        "<body>\n" +  
+        "<form action=\"/servlet/members/save\" method=\"post\">\n" +  
+            " username: <input type=\"text\" name=\"username\" />\n" +  
+            " age: <input type=\"text\" name=\"age\" />\n" +  
+            " <button type=\"submit\">전송</button>\n" +  
+        "</form>\n" +  
+        "</body>\n" +  
+        "</html>\n");
+```
+
+위와 같이 `form`을 갖고 있는 `html`에서 `POST` 요청을 보낼 경우 메시지 body 값이 `username=kim&age=20`이 됩니다.
+
+## request.getInputStream
+
+```java
+@Override  
+protected void service(
+    HttpServletRequest request,
+    HttpServletResponse response
+) throws ServletException, IOException {
+    ServletInputStream inputStream = request.getInputStream();  
+    
+    String messageBody = StreamUtils.copyToString(
+        inputStream,
+        StandardCharsets.UTF_8
+    );  
+      
+    System.out.println("inputStream = " + inputStream);  
+    System.out.println(messageBody);
+    ...
+}
+```
+
+`inputStream`을 활용하여 `messageBody`를 읽어올 수 있습니다.
+
+```java
+private final ObjectMapper objectMapper = new ObjectMapper();
+
+...
+
+HelloData helloData = objectMapper.readValue(
+    messageBody,
+    HelloData.class
+);
+```
+
+`json` 데이터를 받아 Mapping 시키는 예 입니다.
+
+## request.getRequestDispatcher
+
+```java
+@WebServlet(name = "mvcMemberFormServlet", urlPatterns = "/servlet/mcv/members/new-form")  
+public class MvcMemberFormServlet extends HttpServlet {  
+    @Override  
+    protected void service(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws ServletException, IOException {  
+        String viewPath = "/WEB-INF/views/new-form.jsp";  
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);  
+
+        dispatcher.forward(request, response);  
+    }  
+}
+```
+
+`dispatcher.foward`를 사용하면 리다이렉트를 사용하지 않고 클라이언트가 방문할 웹 페이지를 정합니다.
+
+## request.setAttribute
+
+```java
+request.setAttribute("members", members);
+```
+
+`attribute`의 이름, 값을 설정합니다. `html/jsp` 파일로 전달할 수 있습니다.
+
+
+
+---
 # Reference
 
 - [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술 - 인프런 | 강의 (inflearn.com)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1)
