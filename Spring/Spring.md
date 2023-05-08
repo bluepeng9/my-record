@@ -6,11 +6,17 @@
 ---
 # Index
 
-- [Spring Framework 특징](Spring%20Framework%20특징.md)
-- [스프링의 RequestBody, ResponseBody Annotations](스프링의%20RequestBody,%20ResponseBody%20Annotations.md)
-- [Web Server와 Web Application Server](Web%20Server와%20Web%20Application%20Server.md)
-- Valid annotation in Spring
 - Builder pattern in Spring
+- Valid annotation in Spring
+- [Handler Methods의 return value](Handler%20Methods의%20return%20value.md)
+- [HandlerMapping in Spring MVC](HandlerMapping%20in%20Spring%20MVC.md)
+- [Spring @PathVariable](Spring%20@PathVariable.md)
+- [Spring @RequestBody, @ResponseBody Annotations](Spring%20@RequestBody,%20@ResponseBody%20Annotations.md)
+- [Spring Framework 특징](Spring%20Framework%20특징.md)
+- [Spring Home page 만드는 방법](Spring%20Home%20page%20만드는%20방법.md)
+- [Web Server와 Web Application Server](Web%20Server와%20Web%20Application%20Server.md)
+- [log의 올바른 사용방법](log의%20올바른%20사용방법.md)
+
 ---
 # Spring Framework 란
 

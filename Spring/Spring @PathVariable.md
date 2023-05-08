@@ -1,0 +1,209 @@
+- 작성일: 2023-05-08
+- 태그: 
+- 분류
+    - [Spring](Spring.md)
+- 관련 노트
+
+---
+
+`@PathVariable` 어노테이션은 Request URI 매핑에서 템플릿 변수를 처리하고, 메서드 파라미터로 설정하는 데 사용할 수 있습니다.
+
+---
+
+# 기본 사용
+
+```java
+@GetMapping("/api/employees/{id}")
+@ResponseBody
+public String getEmployeesById(@PathVariable String id) {
+    return "ID: " + id;
+}
+```
+
+이 예제는, `@PathVariable` 어노테이션을 이용하여 `URI`에서 `id`를 추출하고 있습니다.
+
+`/api/emplotees/{id}` 으로 `GET` 요청을 보내면, `getEmployeesById` 메서드가 실행되고 다음과 같은 응답을 받을 수 있습니다.
+
+```xml
+http://localhost:8080/api/employees/111 
+---- 
+ID: 111
+```
+
+# PathVariable의 이름 지정
+
+기본 사용 방법에서 `id`를 바로 추출할 수 있었던 이유는, `URI` 안의 변수 `id`와 파라미터 `id` 이름이 같았기 때문입니다.
+
+만약 둘의 값이 다르다면 다음과 같이 값을 가져올 수 있습니다.
+
+```java
+@GetMapping("/api/employeeswithvariable/{id}")
+@ResponseBody
+public String getEmployeesByIdWithVariableName(@PathVariable("id") String employeeId) {
+    return "ID: " + employeeId;
+}
+```
+
+```xml
+http://localhost:8080/api/employeeswithvariable/1 
+---- 
+ID: 1
+```
+
+# 한 요청에 여러 PathVariable이 존재할 경우
+
+경우에 따라, 한번에 많은 `PathVariable`이 존재할 수 있습니다. 이 때 취할 수 있는 방법은 두 가지 입니다.
+
+1. 따로따로 갖고 온다.
+2. 한 번에 갖고 온다.
+
+다음은 각각 변수를 선언해주는 방식입니다.
+
+```java
+@GetMapping("/api/employees/{id}/{name}")
+@ResponseBody
+public String getEmployeesByIdAndName(@PathVariable String id, @PathVariable String name) {
+    return "ID: " + id + ", name: " + name;
+}
+```
+
+```xml
+http://localhost:8080/api/employees/1/bar 
+---- 
+ID: 1, name: bar
+```
+
+`Map<String, String>`을 활용 하여 한 번에 갖고 올 수도 있습니다.
+
+```java
+@GetMapping("/api/employeeswithmapvariable/{id}/{name}")
+@ResponseBody
+public String getEmployeesByIdAndNameWithMapVariable(
+    @PathVariable Map<String, String> pathVarsMap
+) {
+    String id = pathVarsMap.get("id");
+    String name = pathVarsMap.get("name");
+    if (id != null && name != null) {
+        return "ID: " + id + ", name: " + name;
+    } else {
+        return "Missing Parameters";
+    }
+}
+```
+
+```xml
+http://localhost:8080/api/employees/1/bar 
+---- 
+ID: 1, name: bar
+```
+
+---
+
+# Path Variables이 존재하지 않을 수도 있다면
+
+
+```java
+@GetMapping(
+    value = {  
+        "/api/employeeswithrequired",  
+        "/api/employeeswithrequired/{id}"
+        }
+)  
+@ResponseBody  
+public String getEmployeesByIdWithRequired(@PathVariable String id) {  
+    return "ID: " + id;  
+}
+```
+
+위의 경우 두 개의 주소를 처리 하고 있습니다. `id`가 존재할 수도, 존재하지 않을 수도 있기 때문에 다음과 같은 에러가 발생할 수 있습니다.
+
+```xml
+http://localhost:8080/api/employeeswithrequired 
+----
+{"timestamp":"2020-07-08T02:20:07.349+00:00","status":404,"error":"Not Found","message":"","path":"/api/employeeswithrequired"}
+
+http://localhost:8080/api/employeeswithrequired/1
+----
+ID: 111
+```
+
+## required를 사용한 방법
+
+`PathVariable`의 `required` 프로퍼티를 사용해서 처리하는 방법입니다.
+
+```java
+@GetMapping(
+    value = {
+        "/api/employeeswithrequiredfalse",
+        "/api/employeeswithrequiredfalse/{id}"
+        }
+)
+@ResponseBody
+public String getEmployeesByIdWithRequiredFalse(@PathVariable(required = false) String id) {
+    if (id != null) {
+        return "ID: " + id;
+    } else {
+        return "ID missing";
+    }
+}
+```
+
+```xml
+http://localhost:8080/api/employeeswithrequiredfalse 
+---- 
+ID missing
+```
+
+## Optional을 사용한 방법
+
+`Optional`을 사용한 처리 방법입니다.
+
+```java
+@GetMapping(
+    value = {
+        "/api/employeeswithoptional",
+        "/api/employeeswithoptional/{id}"
+        }
+)
+@ResponseBody
+public String getEmployeesByIdWithOptional(@PathVariable Optional<String> id) {
+    if (id.isPresent()) {
+        return "ID: " + id.get();
+    } else {
+        return "ID missing";
+    }
+}
+```
+
+```xml
+http://localhost:8080/api/employeeswithoptional 
+----
+ID missing 
+```
+
+## Map을 사용한 방법
+
+한 요청에 여러 `PathVariable`이 존재할 경우에서 `Map`을 사용한 사례를 봤듯이, 비슷하게 처리할 수도 있습니다.
+
+```java
+@GetMapping(
+    value = {
+        "/api/employeeswithmap/{id}",
+        "/api/employeeswithmap"}
+)
+@ResponseBody
+public String getEmployeesByIdWithMap(@PathVariable Map<String, String> pathVarsMap) {
+    String id = pathVarsMap.get("id");
+    if (id != null) {
+        return "ID: " + id;
+    } else {
+        return "ID missing";
+    }
+}
+```
+
+---
+# Reference
+
+- [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술 - 인프런 | 강의 (inflearn.com)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1)
+- [Spring @PathVariable Annotation | Baeldung](https://www.baeldung.com/spring-pathvariable)
