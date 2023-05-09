@@ -28,13 +28,27 @@ public ResponseEntity postController(@RequestBody LoginForm loginForm) {
 
 RequestBody 어노테이션과 같이 기술한 Type은 반드시 클라이언트에서 보내온 JSON과 일치해야 합니다.
 
+## 주의
+
+- 생략이 불가능합니다.
+    - `@ModelAttribute` 혹은 `@RequestParam` 이 적용되기 때문입니다.
+
 ---
 
 # @ResponseBody
 
+
 ResponseBody 어노테이션은 Controller에게, return된 객체가 자동으로 JSON으로 변환되어 다시 HttpResponse 객체로 전달된다고 알려줍니다. 
+
+다음과 같은 특징을 가지고 있습니다.
+
+- HTTP의 BODY에 문자 내용을 직접 반환 합니다.
+- `viewResolver`  대신 `HttpMessageConverter`가 동작합니다.
+- 기본 문자 처리는 `StringHttpMessageConverter`가 담당합니다.
+- 기본 객체 처리는 `MappingJackson2HttpMessageConverter`가 담당합니다.
+- `byte` 처리 등등 기타 여러 `HttpMessageConverter`가 기본적으로 등록되어 있습니다.
   
-다음과 같은 Response 객체가 있다고 가정해 봅시다.
+Response 객체가 하나 있다고 가정해보겠습니다.
 
 ```java
 public class ResponseTransfer {

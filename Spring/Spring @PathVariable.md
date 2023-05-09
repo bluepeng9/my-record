@@ -30,6 +30,8 @@ http://localhost:8080/api/employees/111
 ID: 111
 ```
 
+---
+
 # PathVariable의 이름 지정
 
 기본 사용 방법에서 `id`를 바로 추출할 수 있었던 이유는, `URI` 안의 변수 `id`와 파라미터 `id` 이름이 같았기 때문입니다.
@@ -49,6 +51,8 @@ http://localhost:8080/api/employeeswithvariable/1
 ---- 
 ID: 1
 ```
+
+---
 
 # 한 요청에 여러 PathVariable이 존재할 경우
 

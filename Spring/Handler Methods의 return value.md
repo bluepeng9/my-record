@@ -14,6 +14,17 @@ Handler 메서드가 String을 반환하면, `ViewResolver`의 구현체가 이�
 
 # ModelAndView
 
+```java
+@RequestMapping("/response-view-v1")  
+public ModelAndView responseViewV1() {  
+
+    ModelAndView mav = new ModelAndView("response/hello")
+    .addObject("data", "hello!");  
+      
+    return mav;  
+}
+```
+
 > The view and model attributes to use and, optionally, a response status.
 
 `view`와 `model attribute` 를 제공합니다. 추가적으로 `response status`를 제공할 수도 있습니다.

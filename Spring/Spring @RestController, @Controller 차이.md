@@ -8,7 +8,6 @@
 
 # @RestController
 
-
 `@Controller` 어노테이션을 포함하고 있는 어노테이션 입니다. 추가적으로 `@ResponseBody` 어노테이션을 갖고 있어서 컨트롤러의 모든 메서드가 return 객체를 자동으로 `HTTPResponse`로 직렬화 합니다.
 
 ---
