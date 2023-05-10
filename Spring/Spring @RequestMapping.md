@@ -111,9 +111,6 @@ public String mappingProduces() {
 
 `Accept`헤더가 `produces`의 값을 포함하고 있다면 실행됩니다. 만약 맞는 핸들러가 메서드가 없다면 `406 Not acceptable` 에러가 발생됩니다.
 
-
-
-
 ---
 
 # Reference
