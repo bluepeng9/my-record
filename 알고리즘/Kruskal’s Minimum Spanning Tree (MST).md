@@ -171,7 +171,7 @@ graph LR
 
 `V = vertics의 수`, `E = edge의 수`라고 할 때, 알고리즘의 시간 복잡도는 `O(E * logE)` 또는 `O(E * logV)` 입니다.
 
-- `edge`를 정렬하는데 `O(E * logE`의 시간이 걸립니다.
+- `edge`를 정렬하는데 `O(E * logE)`의 시간이 걸립니다.
 - 정렬 후 `find-union` 알고리즘을 적용합니다. 이는 `O(logV)` 시간이 걸립니다.
 - 따라서 시간 복잡도는 `O(E * logE + E * logV) 입니다.`
 - 여기서 `E`는 최대 `O(V^2)`이 될 수 있으므로, `O(logV) 와 O(logE)`는 같습니다.
