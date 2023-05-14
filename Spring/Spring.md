@@ -12,6 +12,7 @@
 - [HandlerMapping in Spring MVC](HandlerMapping%20in%20Spring%20MVC.md)
 - [HttpEntity](HttpEntity.md)
 - [Request Mapping Handler adapter 구조](Request%20Mapping%20Handler%20adapter%20구조.md)
+- [Spring @ConfigurationProperties](Spring%20@ConfigurationProperties.md)
 - [Spring @ModelAttribute](Spring%20@ModelAttribute.md)
 - [Spring @PathVariable](Spring%20@PathVariable.md)
 - [Spring @RequestBody, @ResponseBody Annotations](Spring%20@RequestBody,%20@ResponseBody%20Annotations.md)
