@@ -3,6 +3,8 @@
 - 분류
     - [알고리즘](알고리즘.md)
 - 관련 노트
+    - [Disjoint Sets](Disjoint%20Sets.md)
+    
 ---
 
 ```mermaid
